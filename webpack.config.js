@@ -11,7 +11,7 @@ module.exports = (env) => {
     output: {
       filename: 'widget.js',
       path: path.resolve(bundleOutputDir),
-      publicPath: '/'
+      publicPath: '/assets'
     },
     devServer: {
       contentBase: bundleOutputDir
@@ -67,23 +67,23 @@ module.exports = (env) => {
                     // there is at least async functions and for..of
                     useBuiltIns: 'usage'
                   }],
-                  [
-                    // enable transpiling ts => js
-                    "@babel/typescript",
-                    // tell babel to compile JSX using into Preact
-                    { jsxPragma: "h" }
-                  ]
+                  // [
+                  //   // enable transpiling ts => js
+                  //   "@babel/typescript",
+                  //   // tell babel to compile JSX using into Preact
+                  //   { jsxPragma: "h" }
+                  // ]
                 ],
                 'plugins': [
                   // syntax sugar found in React components
                   '@babel/proposal-class-properties',
                   '@babel/proposal-object-rest-spread',
                   // transpile JSX/TSX to JS
-                  ['@babel/plugin-transform-react-jsx', {
-                    // we use Preact, which has `Preact.h` instead of `React.createElement`
-                    pragma: 'h',
-                    pragmaFrag: 'Fragment'
-                  }]
+                  // ['@babel/plugin-transform-react-jsx', {
+                  //   // we use Preact, which has `Preact.h` instead of `React.createElement`
+                  //   pragma: 'h',
+                  //   pragmaFrag: 'Fragment'
+                  // }]
                 ]
               }
             }
