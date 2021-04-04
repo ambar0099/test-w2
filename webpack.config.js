@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 var copyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const bundleOutputDir = './dist';
 
 module.exports = (env) => {
@@ -17,7 +18,9 @@ module.exports = (env) => {
       contentBase: bundleOutputDir
     },
     plugins: isDevBuild
-      ? [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'dev/' }])]
+      ? [new webpack.SourceMapDevToolPlugin(), new copyWebpackPlugin([{ from: 'dev/' }]), new CompressionPlugin({
+        threshold: 8192,
+      })]
       : [],
     optimization: {
       minimize: !isDevBuild
